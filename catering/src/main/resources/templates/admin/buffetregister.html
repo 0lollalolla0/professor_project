@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: headerfiles(title='Login')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+	<div>
+		<h4>New Buffet</h4>
+	</div>
+	<form th:action="@{/addbuffet}" method="POST">
+		<div>
+			<div>
+				<span>Name:</span>
+				<span><input name="name" type="text" required /></span>
+			</div>		
+			<div>
+				<span>Description:</span>
+				<span><input name="description" type="text" required /></span>
+			</div>
+			<div>
+				<span>Chef:</span>
+				<span><input name="chef" type="text" required /></span>
+			</div>
+			<div>
+				<span>Dishes:</span>
+				<div th:each="dish : ${dishes}">
+				  <div><a href="dish.html" 
+				   th:href="@{'/admin' + '/' + ${dish.id}}" 
+				   th:text="${dish.name}">...</a></div>
+				   <div><a th:href="@{'/admin' + ${dish.id} + '/remove/'}">Remove</a></div>
+			   </div>
+			</div>
+			<div>
+				<span><button type="submit">Login</button></span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

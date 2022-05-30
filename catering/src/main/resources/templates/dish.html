@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"> </head>
+<body>
+	<header th:replace="fragments/base.html :: intestazione"></header>
+      <div>
+    	<h4 th:text="#{header.menuAdmin}">Menu</h4>
+		<div>
+    	   <h4 th:text="#{header.ingredienti}">Lista dei piatti</h4>
+    	   <div th:text=" @{name}"></div>
+    	   <div th:text=" @{description}"></div>
+    	   <div th:text=" List of ingredients: "></div>
+		     <ul>
+			   <li th:each="ingredient : ${ingredients}">
+				  <div><a href="ingredient.html" 
+				   th:href="@{'/admin' + '/' + ${ingredient.id}}" 
+				   th:text="${ingredient.name}">...</a></div>
+				   <div><a th:href="@{'/admin' + ${ingredient.id} + '/remove/'}">Remove</a></div>
+			   </li>
+		    </ul>
+	    </div>
+	    <div>
+			<a th:href="@{/addNewDish}">AddNewDish</a>
+   		</div>
+   		<div>
+			<a th:href="@{/logout}">Logout</a>
+   		</div>
+    </div>
+    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
+</body>
+</html>
