@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"> </head>
+        <title>Dish Page</title>
+        <link rel="stylesheet" th:href="@{/css/dish.css}" />
+        <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    </head>
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
       <div>
-    	<h4 th:text="#{header.menuAdmin}">Menu</h4>
 		<div>
-    	   <h4 th:text="#{header.ingredienti}">Lista dei piatti</h4>
-    	   <div th:text=" @{name}"></div>
-    	   <div th:text=" @{description}"></div>
-    	   <div th:text=" List of ingredients: "></div>
-		     <ul>
-			   <li th:each="ingredient : ${ingredients}">
-				  <div><a href="ingredient.html" 
-				   th:href="@{'/admin' + '/' + ${ingredient.id}}" 
-				   th:text="${ingredient.name}">...</a></div>
-				   <div><a th:href="@{'/admin' + ${ingredient.id} + '/remove/'}">Remove</a></div>
-			   </li>
-		    </ul>
+    	   <h2>Dish selected: </h2>
+		   <div class="Container_Dish">
+				<h3 th:text=" ${dish.name}"></h3>
+				<div th:text=" ${dish.description}"></div>
+				<div><h4>List of ingredients:</h4></div>
+				  <ul>
+				    <li th:each="ingredient : ${dish.ingredients}">
+						<div><a href="ingredient.html" 
+						th:href="@{'/dish' + '/' + ${ingredient.id}}" 
+						th:text="${ingredient.name}">...</a></div>
+					 </li>
+				  </ul>
+			</div>
 	    </div>
-	    <div>
-			<a th:href="@{/addNewDish}">AddNewDish</a>
-   		</div>
-   		<div>
-			<a th:href="@{/logout}">Logout</a>
-   		</div>
     </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
 </body>
 </html>

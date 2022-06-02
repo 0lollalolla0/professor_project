@@ -18,4 +18,8 @@ public class IngredientService {
 	public void save(Ingredient ingredient) {
 		ir.save(ingredient);
 	}
+
+	public Ingredient findById(Long id) {
+		return this.ir.findById(id).get();
+	}
 }

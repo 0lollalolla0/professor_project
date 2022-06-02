@@ -44,98 +44,56 @@ public class Start implements ApplicationListener<ContextRefreshedEvent> {
     	credentialService.saveCredentials(new Credentials("test1@test.com","p"));
     	credentialService.saveCredentials(new Credentials("test2@test.com","p"));
     	credentialService.saveCredentials(new Credentials("test3@test.com","p"));
+    	credentialService.saveCredentials(new Credentials("loryc","ciaociao"));
     	
+    	//QUESTI SONO GLI INGREDIENTI
+    	Ingredient i1 = new Ingredient("pane", "Italia", "fatto con farina e lievito");
+    	Ingredient i2 = new Ingredient("nutella", "Italia", "fatta con nocciole");
+    	Ingredient i3 = new Ingredient("pomodori", "Italia", "coltivati con amore");
+    	Ingredient i4 = new Ingredient("baguette", "Francia", "fatta con farina integrale");
+    	Ingredient i5 = new Ingredient("ceci", "Spagna", "coltivati con amore");
+
     	
-//    	//QUESTI SONO GLI INGREDIENTI
-//    	ingridientService.saveIngridient(new Ingridient("Pomodoro", "Italia", "San Marzano DOC"));
-//    	
-//    	//QUESTI SONO I PIATTI
-//    	plateService.savePlate(new Plate( "pasta al sugo",
-//    			" pachini gialli, eco"));
-//    	plateService.savePlate(new Plate("pasta al pesto",
-//    			"pasta al pesto"));
-//    	
-//    	
-//    	
-//    	chefService.saveChef(new Chef("pippo", "messicano", "sa cucinare"));
-//    	
-//    	
-//    	buffetService.saveBuffet(new Buffet("Buffet Pesce 1", "tutto a base di pesce"));
-    	
-    	//DEFINISCO TUTTI GLI INGREDIENTI
-    	Ingredient i1 = new Ingredient("pane", "guatemala", "cagotto assicurato");
-    	Ingredient i2 = new Ingredient("nutella", "italia", "fatta con nocciole");
-    	Ingredient i3 = new Ingredient("pomodori", "italia", "fatta con nocciole");
-    	Ingredient i4 = new Ingredient("manzo", "guatemala", "cagotto assicurato");
-    	
-    	//SALVO GLI INGREDIENTI NEL DB
+    	//SALVO GLI INGREDIENTI DEFINITI SOPRA
     	ingredientService.save(i1);
     	ingredientService.save(i2);
     	ingredientService.save(i3);
     	ingredientService.save(i4);
+    	ingredientService.save(i5);
+
     	
-    	//METTO I PRIMI DUE IN UNA LISTA
-    	List<Ingredient> listaIngredienti1 = new ArrayList<Ingredient>();
-    	listaIngredienti1.add(i1);
-    	listaIngredienti1.add(i2);
+    	//COMPONGO GLI INGREDIENTI DEL PRIMO PIATTO
+    	List<Ingredient> FirstDish = new ArrayList<Ingredient>();
+    	FirstDish.add(i1);
+    	FirstDish.add(i2);
     	
-    	//cREO IL PIATTO 1 CON QUELLA LISTA
-    	Dish p1 = new Dish("pane e nutella", "pane di farina 000, e nutella dell'euro spin" , listaIngredienti1);
+    	//COMPONGO GLI INGREDIENTI DEL SECONDO PIATTO
+    	List<Ingredient> SecondDish = new ArrayList<Ingredient>();
+    	SecondDish.add(i3);
+    	SecondDish.add(i4);
+    	SecondDish.add(i5);
+    	
+    	//CREO I PIATTI CON LE LISTE
+    	Dish p1 = new Dish("pane e nutella", "pane di farina 000, e nutella dell'euro spin" , FirstDish);
     	dishService.save(p1);
+    	
+    	Dish p2 = new Dish("Panino integrale pomodori e ceci", "per chi vuole rimanere a dieta" , SecondDish);
+    	dishService.save(p2);
     	
     	//CREO UNA LISTA DI PIATTI E CI AGGIUNGO IL PIATTO APPENA CREATO
     	List<Dish> piatti = new ArrayList<Dish>();
     	piatti.add(p1);
+    	piatti.add(p2);
     	
     	//CREO UNO CHEF E LO SALVO
-    	Chef chefMR= new Chef("Mario", "Rossi", "San Basilio");
+    	Chef chefMR= new Chef("Mario", "Rossi", "Italian");
     	chefService.save(chefMR);
     	
     	//CREO UN BUFFET, CI METTO I PIATTI E LO SALVO
-    	Buffet buffet1 = new Buffet("Buffet Carne 1", "molto buono", chefMR);
+    	Buffet buffet1 = new Buffet("Buffet 1", "molto buono", chefMR);
     	buffet1.setDishes(piatti);
     	
     	buffetService.save(buffet1);
-    	
-//    	//CREO LA SECONDA LISTA DI INGREDIENTI
-//    	List<Ingredient> listaIngredienti2=new ArrayList<Ingredient>();
-//    	listaIngredienti2.add(i1);
-//		listaIngredienti2.add(i3);
-//		
-//		//CREO IL PIATTO DUE CON QUELLA LISTA
-//    	Dish p2 = new Dish("bruschetta con i pomodori", "pane di farina 000, e pomodori dell'euro spin" , listaIngredienti2);
-//    	dishService.save(p2);
-    	
-    	//piatti.add(p2);
-    	
-//    	List<Ingredient> listaIngredienti3=new ArrayList<Ingredient>();
-//		listaIngredienti3.add(i4);
-//    	Dish p3=new Dish("spezzatino al sugo", "pane di farina 000, e nutella dell'euro spin" ,listaIngredienti1);
-//    	dishService.save(p3);
-//    	
-//    	List<Ingredient> listaIngredienti4=new ArrayList<Ingredient>();
-//    	listaIngredienti4.add(new Ingredient("pollo", "guatemala", "cagotto assicurato"));
-//    	listaIngredienti4.add(new Ingredient("farina", "italia", "fatta con nocciole"));
-//    	Dish piatto4 = new Dish("pollo fritto", "pane di farina 000, e pomodori dell'euro spin" ,listaIngredienti2);
-//    	
-//    	List<Dish> secondi = new ArrayList<Dish>();
-//    	secondi.add(p3);
-//    	secondi.add(piatto4);
-//    	
-//  
-//    	List<Ingredient> listaIngredienti5=new ArrayList<Ingredient>();
-//    	listaIngredienti5.add(i4);
-//    	listaIngredienti5.add(i5);
-//    	Dish piatto5=new Dish("spezzatino al sugo", "pane di farina 000, e nutella dell'euro spin" ,listaIngredienti1);
-//    	
-//    	List<Ingredient> listaIngredienti6=new ArrayList<Ingredient>();
-//    	listaIngredienti6.add(new Ingredient("pollo", "guatemala", "cagotto assicurato"));
-//    	listaIngredienti6.add(new Ingredient("farina", "italia", "fatta con nocciole"));
-//    	Dish piatto6 = new Dish("pollo fritto", "pane di farina 000, e pomodori dell'euro spin" ,listaIngredienti2);
-//    	
-//    	List<Dish> dessert = new ArrayList<Dish>();
-//    	dessert.add(piatto5);
-//    	dessert.add(piatto6);
     }
 
 }

@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" th:href="@{/css/index.css}" />
+        <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+        <title>Index Page</title>
+    </head>
 <body>
     <div>
-    	<h4>Welcome Page</h4>
-		<div>
-			<a th:href="@{/login}" th:method="get">Accedi come amministratore</a>
-   		</div>
-		<div>
-			<a th:href="@{/home}" th:method="get">Vai ai buffet</a>
-   		</div>
+    	<h1>Welcome Page</h1>
+        <h2>Thanks in advace for your visit</h2>
+        <div class="desc">Welcome to our online buffet service, please take a look at all the diverse dishes in our many buffets</div>
+		<div class="master_but">
+            <div class="container">
+                <a class="btn" th:href="@{/login}" th:method="get">Access like an admin</a>
+            </div>
+            <div class="container">
+                <a class="btn" th:href="@{/home}" th:method="get">Take a look at the buffets</a>
+            </div>
+        </div>
     </div>
+
+    <div class="socialMedia">
+		<ul>
+			<li><a th:href="@{mailto:angelote678@gmail.com}" class="fa fa-google"> E-MAIL</a></li>
+			<li><a th:href="@{https://twitter.com/Angelote678}" class="fa fa-twitter"> TWITTER</a></li>
+			<li><a th:href="@{https://www.instagram.com/angel_alm__/}" class="fa fa-instagram"> INSTAGRAM</a></li>
+		</ul>
+		<div class="generic"> TLF: +34 651671557</div>
+	</div>
 </body>
 </html>

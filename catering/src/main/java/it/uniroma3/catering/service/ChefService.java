@@ -18,4 +18,8 @@ public class ChefService {
 	public void save(Chef chef) {
 		cr.save(chef);
 	}
+
+	public Chef findById(Long id) {
+		return this.cr.findById(id).get();
+	}
 }

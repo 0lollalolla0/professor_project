@@ -3,9 +3,8 @@ package it.uniroma3.catering.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.catering.controller.validator.BuffetValidator;
@@ -30,45 +29,30 @@ public class AdminController {
 		return "loginForm.html";
 	}
 	
-    @GetMapping("/admin/home")
+    @GetMapping("/default")
     public String defaultAfterLogin(Model model) {
     	model.addAttribute("buffets", bs.findAll());
         return "admin/home.html";
     }
     
+    @GetMapping("/admin/home/{id}")
+    public String getBuffet(@PathVariable("id") Long id, Model model) {
+    	Buffet buffet = this.bs.findById(id);
+    	model.addAttribute(buffet);
+    	return "admin/buffet.html";
+    }
+    
+    @PostMapping("/admin/remove/{id}")
+    public String remodeBuffet(@PathVariable("id") Long id, Model model) {
+    	Buffet buffet = this.bs.findById(id);
+    	this.bs.deleteById(id);
+    	model.addAttribute("buffets", bs.findAll());
+    	return "admin/home.html";
+    }
+    
     @GetMapping("/admin/addbuffet")
 	public String showRegisterForm (Model model) {
 		model.addAttribute("buffet", new Buffet());
-		return "buffetregister.html";
+		return "admin/buffetregister.html";
 	}
-    
-//    @GetMapping("/admin/{id}")
-//    public String getBuffet(@PathVariable("id") Long id, Model model) {
-//    	Buffet buffet = this.bs.findById(id);
-//    	model.addAttribute("name", buffet.getName());
-//    	model.addAttribute("chef", buffet.getChef());
-//    	model.addAttribute("description", buffet.getDescription());
-//    	model.addAttribute("dishes", buffet.getDishes());
-//    	return "admin/buffet.html";
-//    }
-    
-    
-//    @PostMapping("/admin/{id}/remove")
-//    public String RemoveBuffet(@PathVariable("id") Long id, Model model) {
-//    	bs.deleteById(id);
-//    	return "admin/home.html";
-//    }
-    
-//    @PostMapping("/admin/{id}/remove")
-//    public String RemoveDish(@PathVariable("id") Long id, Model model) {
-//    	bs.deleteById(id);
-//    	return "admin/home.html";
-//    }
-    
-//    @GetMapping("/admin/{id}")
-//    public String getDish(@PathVariable("id") Long id, Model model) {
-//    	Dish dish = this.ds.findById(id);
-//    	model.addAttribute("ingredients", dish.getIngredients());
-//    	return "admin/buffet.html";
-//    }
 }
