@@ -36,6 +36,10 @@ public class BuffetService {
 	public Buffet findById(Long id) {
 		return this.br.findById(id).get();
 	}
+
+	public boolean existsByName(String name) {
+		return this.br.existsByName(name);
+	}
 	
 	
 }

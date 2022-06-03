@@ -5,12 +5,12 @@
     	<h3 th:text="${buffet.name}"></h3>
     	<div th:text="${buffet.description}"></div>
     	<div>Dishes by the chef</div>
-    	<div><a th:href="@{'/admin' + '/' + ${chef.id}}" th:text="${chef.lastName}">...</a></div>
+    	<div><a th:href="@{'/buffet' + '/' + ${chef.id}}" th:text="${chef.lastName}">...</a></div>
 		<div>
-    	   <h4>Lista dei piatti</h4>
+    	   <h4>Dish list: </h4>
 		     <ul>
 			   <li th:each="dish : ${buffet.dishes}">
-				  <div><a th:href="@{'/admin' + '/' + ${dish.id}}" th:text="${dish.name}">...</a></div>
+				  <div><a th:href="@{'/buffet' + '/' + ${dish.id}}" th:text="${dish.name}">...</a></div>
 			   </li>
 		    </ul>
 	    </div>

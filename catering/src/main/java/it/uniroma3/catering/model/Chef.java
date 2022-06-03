@@ -3,7 +3,6 @@ package it.uniroma3.catering.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +22,14 @@ public class Chef {
 	
 	private String nationality;
 	
-	@OneToMany(mappedBy="chef", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="chef")
 	private List<Buffet> buffets;
 
 	public Chef(String firstName, String lastName, String nationality) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nationality = nationality;
+		this.buffets = new ArrayList<Buffet>();
 	}
 
 	public Chef() { 

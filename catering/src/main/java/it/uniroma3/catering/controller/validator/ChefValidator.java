@@ -5,27 +5,27 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.catering.model.Buffet;
-import it.uniroma3.catering.service.BuffetService;
+import it.uniroma3.catering.model.Chef;
+import it.uniroma3.catering.service.ChefService;
 
 @Component
-public class BuffetValidator implements Validator {
-	
+public class ChefValidator implements Validator {
+
 	@Autowired
-	private BuffetService bs;
+	private ChefService cs;
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Buffet.class.equals(clazz);
+		return Chef.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Buffet buffet = (Buffet) target;
-		if (this.bs.existsByName(buffet.getName())) {
-			errors.rejectValue("name", "nomebuffet.duplicato");
+		Chef chef = (Chef) target;
+		if(this.cs.existsByFirstNameAndLastName(chef.getFirstName(), chef.getLastName())) {
+			errors.rejectValue("firstName", "");
+			errors.rejectValue("lastName", "");
 		}
-	}
-	
+	} 
 	
 }

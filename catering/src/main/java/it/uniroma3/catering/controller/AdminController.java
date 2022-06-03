@@ -69,12 +69,16 @@ public class AdminController {
     @PostMapping("/addbuffet")
     public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bbr, 
     		@Valid @ModelAttribute("chef") Chef chef, BindingResult cbr, Model model) {
-    	if(!bbr.hasErrors() && !cbr.hasErrors()) {
-    		chef.addBuffet(buffet);
-    		this.cs.save(chef);
-    		buffet.setChef(chef);
-    		this.bs.save(buffet);
-    		model.addAttribute("buffets", this.bs.findAll());
+    	this.bv.validate(buffet, bbr);
+    	if(!bbr.hasErrors()) {
+    		if(this.cs.existsByFirstNameAndLastName(chef.getFirstName(), chef.getLastName())) {
+    			chef = this.cs.findByFirstNameAndLastName(chef.getFirstName(), chef.getLastName());
+    		}
+    		   chef.addBuffet(buffet);
+    		   this.cs.save(chef);
+    		   buffet.setChef(chef);
+    		   this.bs.save(buffet);
+    		   model.addAttribute("buffets", this.bs.findAll());
     		return "admin/home.html";
     	}
     	return "admin/buffetregister.html";
