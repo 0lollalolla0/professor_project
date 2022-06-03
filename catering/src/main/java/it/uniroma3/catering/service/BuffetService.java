@@ -41,5 +41,4 @@ public class BuffetService {
 		return this.br.existsByName(name);
 	}
 	
-	
 }

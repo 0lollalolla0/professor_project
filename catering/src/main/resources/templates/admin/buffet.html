@@ -13,7 +13,7 @@
         <h3 th:text="${buffet.name}"></h3>
     	<div th:text="${buffet.description}"></div>
     	<div>Dishes by the chef</div>
-    	<div class="al"><a class="Container" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.lastName}">...</a></div>
+    	<div class="al"><a class="Container" th:href="@{'/chefad' + '/' + ${chef.id}}" th:text="${chef.lastName}">...</a></div>
 		<div><h4>Lista dei piatti:</h4></div>
 		<div class="al">
 		  <ul>
@@ -21,10 +21,11 @@
 			  <div class="al"><a class="Container"
 			  th:href="@{'/buffet' + '/' + ${dish.id}}"
 			  th:text="${dish.name}">...</a></div>
+			  <div><a th:href="@{'/todeletedish' + '/' + ${dish.id}}" th:method="POST">Remove</a></div>
 			</li>
 		  </ul>
 		  <div>
-			<a th:href="@{/adddish}"><button type="submit"> Add new dish </button></a>
+			<a th:href="@{'/adddishto' + '/' + ${buffet.id}}"><button type="submit"> Add new dish </button></a>
    		  </div>
 	    </div>
 	  </div>

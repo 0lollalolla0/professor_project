@@ -1,9 +1,11 @@
 package it.uniroma3.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,16 +29,19 @@ public class Buffet {
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Chef chef;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Dish> dishes;
 
 	public Buffet(String name, String description, Chef chef) {
 		this.name = name;
 		this.description = description;
 		this.chef = chef;
+		this.dishes = new ArrayList<Dish>();
 	}
 
-	public Buffet() { }
+	public Buffet() {
+		this.dishes = new ArrayList<Dish>();
+	}
 
 	public Long getId() {
 		return id;
@@ -78,6 +83,12 @@ public class Buffet {
 		this.dishes = dishes;
 	}
 	
-	
+	public void addDish(Dish dish) {
+		this.dishes.add(dish);
+	}
+
+	public void removeDish(Dish dish) {
+		this.dishes.remove(dish);
+	}
 	
 }

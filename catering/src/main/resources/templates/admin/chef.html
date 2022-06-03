@@ -13,7 +13,8 @@
 		  <h4>Buffets list: </h4>
 		    <ul>
 			   <li th:each="buffet : ${chef.buffets}">
-				  <div><a th:href="@{'/home' + '/' + ${buffet.id}}" th:text="${buffet.name}">...</a></div>
+				  <div><a th:href="@{'/homead' + '/' + ${buffet.id}}" th:text="${buffet.name}">...</a></div>
+				  <div><a th:href="@{'/todeletebuffet' + '/' + ${buffet.id}}" th:method="POST">Remove</a></div>
 			   </li>
 		    </ul>
 		  </div>

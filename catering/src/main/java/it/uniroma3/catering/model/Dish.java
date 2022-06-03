@@ -1,12 +1,15 @@
 package it.uniroma3.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Dish {
@@ -15,19 +18,24 @@ public class Dish {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String name;
 	
+	@NotBlank
 	private String description;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.MERGE})
 	private List<Ingredient> ingredients;
 	
-	public Dish() {}
+	public Dish() {
+		this.ingredients = new ArrayList<Ingredient>();
+	}
 
 	public Dish(String name, String description, List<Ingredient> ingredients) {
 		this.name = name;
 		this.description = description;
 		this.ingredients = ingredients;
+		this.ingredients = new ArrayList<Ingredient>();
 	}
 
 	public Long getId() {

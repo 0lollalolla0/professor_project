@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div>
+		<h4>Dish form</h4>
+    </div>
+	<form th:action="@{/adddish}" method="POST">
+		<div>
+			<div>Dish name: <input name="name" type="text" required /><span th:if="${#fields.hasErrors('dish.name')}" th:errors="*{dish.name}"></span></div>
+			<div>Dish description: <input name="description" type="text" required /><span th:if="${#fields.hasErrors('dish.description')}" th:errors="*{dish.description}"></span></div>
+		    <div><button type="submit">submit</button></div>
+		</div>
+	</form>
+</body>
+</html>

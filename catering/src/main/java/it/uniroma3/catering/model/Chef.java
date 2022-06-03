@@ -68,11 +68,11 @@ public class Chef {
 		this.nationality = nationality;
 	}
 
-	public List<Buffet> getBuffet() {
+	public List<Buffet> getBuffets() {
 		return buffets;
 	}
 
-	public void addBuffet(Buffet buffet) {
+	public void addBuffets(Buffet buffet) {
 		this.buffets.add(buffet);
 	}
 }
