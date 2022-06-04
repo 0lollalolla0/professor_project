@@ -81,8 +81,14 @@ public class AdminController {
     
     @GetMapping("/todeletedish/{id}")
     public String toDeleteDish(@PathVariable("id") Long id, Model model) {
-    	this.currentBuffet.removeDish(this.ds.findById(id));
-    	this.bs.save(currentBuffet);
+    	Dish dish = this.ds.findById(id);
+    	for(Buffet b : this.bs.findAll()) {
+    		if(b.getDishes().contains(dish)) {
+    			b.removeDish(dish);
+    			this.bs.save(b);
+    			this.currentBuffet = b;
+    		}
+    	}
     	this.ds.deleteById(id);
 		model.addAttribute("buffet", this.currentBuffet);
 		model.addAttribute("chef", this.currentBuffet.getChef());

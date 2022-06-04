@@ -29,7 +29,7 @@ public class Buffet {
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Chef chef;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Dish> dishes;
 
 	public Buffet(String name, String description, Chef chef) {
@@ -90,5 +90,4 @@ public class Buffet {
 	public void removeDish(Dish dish) {
 		this.dishes.remove(dish);
 	}
-	
 }
