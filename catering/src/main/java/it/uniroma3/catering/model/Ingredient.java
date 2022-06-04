@@ -17,6 +17,8 @@ public class Ingredient {
 	private String origin;
 	
 	private String description;
+	
+	public Ingredient() {}
 
 	public Ingredient(String name, String origin, String description) {
 		this.name = name;
@@ -32,27 +34,27 @@ public class Ingredient {
 		this.id = id;
 	}
 
-	public String getNome() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNome(String nome) {
+	public void setName(String nome) {
 		this.name = nome;
 	}
 
-	public String getOrigine() {
+	public String getOrigin() {
 		return origin;
 	}
 
-	public void setOrigine(String origine) {
+	public void setOrigin(String origine) {
 		this.origin = origine;
 	}
 
-	public String getDescrizione() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescrizione(String descrizione) {
+	public void setDescription(String descrizione) {
 		this.description = descrizione;
 	}
 	

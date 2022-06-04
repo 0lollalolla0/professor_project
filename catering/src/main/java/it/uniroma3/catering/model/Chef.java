@@ -1,5 +1,6 @@
 package it.uniroma3.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -28,9 +29,12 @@ public class Chef {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.nationality = nationality;
+		this.buffets = new ArrayList<Buffet>();
 	}
 
-	public Chef() { }
+	public Chef() { 
+		this.buffets = new ArrayList<Buffet>();
+	}
 
 	public Long getId() {
 		return id;
@@ -64,11 +68,11 @@ public class Chef {
 		this.nationality = nationality;
 	}
 
-	public List<Buffet> getBuffet() {
+	public List<Buffet> getBuffets() {
 		return buffets;
 	}
 
-	public void addBuffet(Buffet buffet) {
+	public void addBuffets(Buffet buffet) {
 		this.buffets.add(buffet);
 	}
 }

@@ -1,12 +1,17 @@
 package it.uniroma3.catering.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import org.hibernate.annotations.Fetch;
 
 @Entity
 public class Dish {
@@ -15,14 +20,19 @@ public class Dish {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String name;
 	
+	@NotBlank
 	private String description;
 	
-	@OneToMany
+	@Fetch(value = org.hibernate.annotations.FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE, CascadeType.REMOVE})
 	private List<Ingredient> ingredients;
 	
-	public Dish() {}
+	public Dish() {
+		this.ingredients = new ArrayList<Ingredient>();
+	}
 
 	public Dish(String name, String description, List<Ingredient> ingredients) {
 		this.name = name;
@@ -60,6 +70,10 @@ public class Dish {
 
 	public void addIngredient(Ingredient ingredient) {
 		this.ingredients.add(ingredient);
+	}
+
+	public void removeIngredient(Ingredient ingredient) {
+		this.ingredients.remove(ingredient);
 	}
 	
 }

@@ -15,11 +15,18 @@
 				  <ul>
 				    <li th:each="ingredient : ${dish.ingredients}">
 						<div><a href="ingredient.html" 
-						th:href="@{'/dish' + '/' + ${ingredient.id}}" 
+						th:href="@{'/dishad' + '/' + ${ingredient.id}}" 
 						th:text="${ingredient.name}">...</a></div>
+					    <div><a th:href="@{'/todeleteingredient' + '/' + ${ingredient.id}}" th:method="POST">Remove</a></div>
 					 </li>
 				  </ul>
+				  <div>
+			        <a th:href="@{'/addingredientto' + '/' + ${dish.id}}"><button type="submit"> Add new ingredient </button></a>
+   		          </div>
 			</div>
+			<div>
+			  <a th:href="@{/logout}"><button type="submit">logout</button></a>
+   		    </div>
 	    </div>
     </div>
 </body>

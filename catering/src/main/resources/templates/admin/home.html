@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"> </head>
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
       <div>
-    	<h4 th:text="#{header.menuAdmin}">Menu</h4>
 		<div>
-    	   <h4 th:text="#{header.buffets}">Lista dei buffet</h4>
+    	   <h4>Lista dei buffet:</h4>
 		     <ul>
 			   <li th:each="buffet : ${buffets}">
 				  <div><a href="buffet.html" 
-				   th:href="@{'/admin' + '/' + ${buffet.id}}" 
+				   th:href="@{'/homead' + '/' + ${buffet.id}}" 
 				   th:text="${buffet.name}">...</a></div>
-				   <div><a th:href="@{'/admin + '/remove + '/' + ${buffet.id}}">Remove</a></div>
+				   <div><a th:href="@{'/todeletebuffet' + '/' + ${buffet.id}}" th:method="POST">Remove</a></div>
 			   </li>
 		    </ul>
+		    <div>
+			  <a th:href="@{/addbuffet}"><button type="submit"> Add new buffet </button></a>
+   		    </div>
 	    </div>
-	    <div>
-			<a th:href="@{/addbuffet}">AddNewBuffet</a>
-   		</div>
    		<div>
-			<a th:href="@{/logout}">Logout</a>
+			<a th:href="@{/logout}"><button type="submit">logout</button></a>
    		</div>
     </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
 </body>
 </html>

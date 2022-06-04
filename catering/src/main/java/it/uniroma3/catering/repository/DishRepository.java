@@ -6,4 +6,6 @@ import it.uniroma3.catering.model.Dish;
 
 public interface DishRepository extends CrudRepository<Dish, Long>{
 
+	public boolean existsByName(String name);
+
 }
