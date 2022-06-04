@@ -1,6 +1,7 @@
 package it.uniroma3.catering.service;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,18 @@ public class IngredientService {
 
 	public Ingredient findById(Long id) {
 		return this.ir.findById(id).get();
+	}
+
+	@Transactional
+	public void deleteById(Long id) {
+		this.ir.deleteById(id);
+	}
+
+	public boolean existsByName(String name) {
+		return this.ir.existsByName(name);
+	}
+
+	public @Valid Ingredient findByName(String name) {
+		return this.ir.findByName(name);
 	}
 }

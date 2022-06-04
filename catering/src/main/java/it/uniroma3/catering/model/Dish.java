@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+import org.hibernate.annotations.Fetch;
 
 @Entity
 public class Dish {
@@ -24,7 +26,8 @@ public class Dish {
 	@NotBlank
 	private String description;
 	
-	@OneToMany(cascade = {CascadeType.MERGE})
+	@Fetch(value = org.hibernate.annotations.FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE, CascadeType.REMOVE})
 	private List<Ingredient> ingredients;
 	
 	public Dish() {
@@ -35,7 +38,6 @@ public class Dish {
 		this.name = name;
 		this.description = description;
 		this.ingredients = ingredients;
-		this.ingredients = new ArrayList<Ingredient>();
 	}
 
 	public Long getId() {
@@ -68,6 +70,10 @@ public class Dish {
 
 	public void addIngredient(Ingredient ingredient) {
 		this.ingredients.add(ingredient);
+	}
+
+	public void removeIngredient(Ingredient ingredient) {
+		this.ingredients.remove(ingredient);
 	}
 	
 }

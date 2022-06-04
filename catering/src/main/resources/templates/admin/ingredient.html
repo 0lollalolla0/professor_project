@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+        <title>Chef Page</title>
+    </head>
+<body>
+      <div>
+    	<h1>Ingredient</h1>
+		  <div> NAME </div><div th:text=" ${ingredient.name}"></div>
+		  <div> ORIGIN </div><div th:text=" ${ingredient.origin}"></div>
+		  <div> DESCRIPTION </div><div th:text=" ${ingredient.description}"></div>
+	  </div>
+</body>
+</html>

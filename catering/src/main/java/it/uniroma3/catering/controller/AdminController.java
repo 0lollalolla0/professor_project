@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.catering.controller.validator.BuffetValidator;
 import it.uniroma3.catering.controller.validator.DishValidator;
+import it.uniroma3.catering.controller.validator.IngredientValidator;
 import it.uniroma3.catering.model.Buffet;
 import it.uniroma3.catering.model.Chef;
 import it.uniroma3.catering.model.Dish;
+import it.uniroma3.catering.model.Ingredient;
 import it.uniroma3.catering.service.BuffetService;
 import it.uniroma3.catering.service.ChefService;
 import it.uniroma3.catering.service.DishService;
+import it.uniroma3.catering.service.IngredientService;
 
 @Controller
 public class AdminController {
@@ -38,7 +41,15 @@ public class AdminController {
 	@Autowired
 	private DishValidator dv;
 	
+	@Autowired
+	private IngredientService is;
+	
+	@Autowired
+	private IngredientValidator iv;
+	
 	private Buffet currentBuffet;
+
+	private Dish currentDish;
 	
 	@GetMapping("/login")
 	public String showLoginForm (Model model) {
@@ -72,6 +83,20 @@ public class AdminController {
     	return "admin/chef.html";
     }
     
+    @GetMapping("/buffetad/{id}")
+    public String getDish(@PathVariable("id") Long id, Model model) {
+    	Dish dish = this.ds.findById(id);
+    	model.addAttribute("dish", dish);
+    	return "admin/dish.html";
+    }
+    
+    @GetMapping("/dishad/{id}")
+    public String getIngredient(@PathVariable("id") Long id, Model model) {
+    	Ingredient ingredient = this.is.findById(id);
+    	model.addAttribute("ingredient", ingredient);
+    	return "admin/ingredient.html";
+    }
+    
     @GetMapping("/todeletebuffet/{id}")
     public String toDeleteBuffet(@PathVariable("id") Long id, Model model) {
     	this.bs.deleteById(id);
@@ -93,6 +118,23 @@ public class AdminController {
 		model.addAttribute("buffet", this.currentBuffet);
 		model.addAttribute("chef", this.currentBuffet.getChef());
     	return "admin/buffet.html";
+    }
+    
+    @GetMapping("/todeleteingredient/{id}")
+    public String toDeleteIngredient(@PathVariable("id") Long id, Model model) {
+    	Ingredient ingredient = this.is.findById(id);
+    	for(Buffet b : this.bs.findAll()) {
+    		for(Dish d : b.getDishes()) {
+    			if(d.getIngredients().contains(ingredient)) {
+    				d.removeIngredient(ingredient);
+    				this.ds.save(d);
+    				this.currentDish = d;
+    			}
+    		}
+    	}
+    	this.is.deleteById(id);
+		model.addAttribute("dish", this.currentDish);
+		return "admin/dish.html";
     }
     
     @GetMapping("/addbuffet")
@@ -121,14 +163,14 @@ public class AdminController {
     }
     
     @GetMapping("/adddishto/{id}")
-    public String showDishForm(@PathVariable("id") Long id, Model model) {
+    public String getDishForm(@PathVariable("id") Long id, Model model) {
     	this.currentBuffet = this.bs.findById(id);
     	model.addAttribute("dish", new Dish());
     	return "admin/dishregister.html";
     }
     
     @PostMapping("/adddish")
-    public String adddish(@Valid @ModelAttribute("dish") Dish dish, BindingResult br, Model model) {
+    public String addDish(@Valid @ModelAttribute("dish") Dish dish, BindingResult br, Model model) {
     	this.dv.validate(dish, br);
     	if(!br.hasErrors()) {
     		this.ds.save(dish);
@@ -140,4 +182,33 @@ public class AdminController {
     	}
     	return "admin/dishregister.html";
     }
+    
+    @GetMapping("/addingredientto/{id}")
+    public String getIngredientForm(@PathVariable("id") Long id, Model model) {
+    	this.currentDish = this.ds.findById(id);
+    	model.addAttribute("ingredient", new Ingredient());
+    	return "admin/ingredientregister.html";
+    }
+    
+    @PostMapping("/addingredient")
+    public String addIngredient(@Valid @ModelAttribute("ingredient") Ingredient ingredient, BindingResult br, Model model) {
+    	this.iv.validate(ingredient, br);
+    	if(!br.hasErrors()) {
+    		String name = ingredient.getName();
+    	    if(this.is.existsByName(name)) {
+    	    	ingredient = this.is.findByName(name);
+		    }
+    	    this.is.save(ingredient);
+    	    this.currentDish.addIngredient(ingredient);
+    	    this.ds.save(currentDish);
+    	    model.addAttribute("dish", this.currentDish);
+    	    return "admin/dish.html";
+    	}
+    	return "admin/ingredientregister.html";
+    }
+    
+    
+    
+    
+    
 }

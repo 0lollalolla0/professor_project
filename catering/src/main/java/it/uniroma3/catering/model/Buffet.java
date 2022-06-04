@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.Fetch;
+
 @Entity
 public class Buffet {
 
@@ -29,6 +31,7 @@ public class Buffet {
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Chef chef;
 	
+	@Fetch(value = org.hibernate.annotations.FetchMode.SELECT)
 	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
 	private List<Dish> dishes;
 

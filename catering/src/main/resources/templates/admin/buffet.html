@@ -19,7 +19,7 @@
 		  <ul>
 		    <li th:each="dish : ${buffet.dishes}">
 			  <div class="al"><a class="Container"
-			  th:href="@{'/buffet' + '/' + ${dish.id}}"
+			  th:href="@{'/buffetad' + '/' + ${dish.id}}"
 			  th:text="${dish.name}">...</a></div>
 			  <div><a th:href="@{'/todeletedish' + '/' + ${dish.id}}" th:method="POST">Remove</a></div>
 			</li>
