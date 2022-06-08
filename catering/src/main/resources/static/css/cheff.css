@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    padding: 1px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  h3{
+    color: #092518; 
+    font-family: 'Raleway',sans-serif; 
+    font-size: 30px; font-weight: 800; 
+    line-height: 36px; margin: 0 0 24px; 
+    text-align: center;
+
+}
+  
+  #heading1{
+      text-align: center;
+      padding: 30px;
+  }
+  
+  .myForm{
+      max-width:500px;
+     margin: auto;
+     margin-top: 10px;
+    }
+  .input-container {
+      
+      display: flex;
+      width: 100%;
+      margin-bottom: 15px;
+      
+    }
+  
+  .input-field {
+      width: 100%;
+      padding: 10px;
+      outline: none;
+      border: none;
+      border-bottom: 3px solid darkcyan;
+    }
+    .input-field:focus {
+      border: 2px solid darkcyan;
+    }
+  
+  .bttn {
+      background-color:darkorange;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+  .bttn:hover {
+      opacity: 1;
+      background-color: darkcyan;
+    }  
+  a:hover{
+      color: blueviolet;
+  }
+  .icon:hover{
+      background-color: darkcyan;
+  }
+
+  .big-block{
+
+    border-style: solid;
+
+    border-color: black;
+    border-width: 0.1cm;
+    display: block;
+    text-align: center;
+    background-color:  rgb(99, 120, 187)
+
+  }
+
+  body{
+    height: 100%;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  }
+
+  html{
+
+    height: 100%;
+  }
+  
+.space{
+	font-weight: bold;
+    margin:2em;
+    
+}
+
+.Container{
+
+    text-align: center;
+    margin: 20px;
+    margin-top: 1cm;
+    color: black;
+    
+
+}
