@@ -94,16 +94,43 @@ float:left;
 .Container{
 
     text-align: center;
-    margin:2em;
-    margin-top: 2cm;
-    border: 1px solid #000000; /*anchura, estilo y color borde*/
-    padding: 10px; /*espacio alrededor texto*/
+    margin: 20px;
+    margin-top: 1cm;
+    color: black;
+    
 
 }
 
 .al{
 
-text-align: center;
+ 	text-align: center;
+    margin: 20px;
+    margin-top: 1cm;
+    color: black;
+    
 
 }
 
+.marco{
+	
+	text-align: center;
+    margin: 20px;
+    margin-top: 1cm;
+    color: black;
+    border: 5px solid rgb(0, 0, 0);
+}
+
+.btn{
+    
+
+    margin: 20px;
+    margin-top: 1cm;
+    border: 1px solid #4a7ed0; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color: #4a7ed0; /*color botón*/
+    color: #000000; /*color texto*/
+    text-decoration:double; /*decoración texto*/
+    text-transform: uppercase; /*capitalización texto*/
+    font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+    border-radius: 50px; /*bordes redondos*/
+}

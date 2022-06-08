@@ -16,15 +16,14 @@ import static it.uniroma3.catering.model.Credentials.ADMIN_ROLE;
 import javax.sql.DataSource;
 
 /**
- * The AuthConfiguration is a Spring Security Configuration.
- * It extends WebSecurityConfigurerAdapter, meaning that it provides the settings for Web security.
+ * The AuthConfiguration is a Spring Security Configuration. Basically extends WebSecurityConfigurerAdapter, provides the settings for Web security.
  */
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
 
     /**
-     * The datasource is automatically injected into the AuthConfiguration (using its getters and setters)
+     * The data is automatically injected into the AuthConfiguration (using its getters and setters)
      * and it is used to access the DB to get the Credentials to perform authentiation and authorization
      */
     @Autowired

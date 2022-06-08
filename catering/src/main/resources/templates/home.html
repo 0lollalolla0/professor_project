@@ -8,10 +8,10 @@
 <body>
       <div>
     	<h1>Buffet list:</h1>
-		<div>
+		<div class="Container">
 		     <ul>
 			   <li th:each="buffet : ${buffets}">
-				  <div><a href="buffet.html" 
+				  <div><a class="space" href="buffet.html" 
 				   th:href="@{'/home' + '/' + ${buffet.id} }" 
 				   th:text="${buffet.name}">...</a></div>
 			   </li>
@@ -25,7 +25,7 @@
 			<li><a th:href="@{https://twitter.com/Angelote678}" class="fa fa-twitter"> TWITTER</a></li>
 			<li><a th:href="@{https://www.instagram.com/angel_alm__/}" class="fa fa-instagram"> INSTAGRAM</a></li>
 		</ul>
-		<div class="generic"> TLF: +34 651671557</div>
+		<div class="spaces"> TLF: +34 651671557</div>
 	</div>
 </body>
 </html>

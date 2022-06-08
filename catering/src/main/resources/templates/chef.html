@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-        <title>Chef Page</title>
-    </head>
+<head>
+	<link rel="stylesheet" th:href="@{/css/cheff.css}" />
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+    <title>Chef Page</title>
+</head>
 <body>
       <div>
-    	<h1>Chef</h1>
-		<div>
-		  <div> FIRST NAME </div><div th:text=" ${chef.firstName}"></div>
-		  <div> LAST NAME </div><div th:text=" ${chef.lastName}"></div>
-		  <div> NATIONALITY </div><div th:text=" ${chef.nationality}"></div>
+    	<h3>Chef</h3>
+		<div class="Container">
+		  <div class="space"> FIRST NAME </div><div th:text=" ${chef.firstName}"></div>
+		  <div class="space"> LAST NAME </div><div th:text=" ${chef.lastName}"></div>
+		  <div class="space"> NATIONALITY </div><div th:text=" ${chef.nationality}"></div>
 		  <div>
 		  <h4>Buffets list: </h4>
 		    <ul>

@@ -1,15 +1,16 @@
 html{
 
-   height: auto;
-    width: auto;
+   height: 100%;
+    width: 100%;
 
 }
+
 body{
     padding: 0;
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    height: auto;
-    width: auto;
+    height: 100%;
+    width: 100%;
     background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
 }
 
@@ -153,4 +154,5 @@ margin-left:3cm;
 .master_but{
 
     align-items:center;
+    text-align: center;
 }

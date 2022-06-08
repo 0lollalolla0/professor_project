@@ -43,6 +43,7 @@ span.linkheader a:hover {  /* Pseudoclase compuesta a para links */
 a:hover,a:active
 {
 background-color:pink;
+color:black;
 }
 ul{
 	
@@ -83,6 +84,7 @@ float:left;
     margin-top: 2cm;
     border: 1px solid #000000; /*anchura, estilo y color borde*/
     padding: 10px; /*espacio alrededor texto*/
+    color:black;
 
 }
 
@@ -90,5 +92,33 @@ float:left;
 
     margin:2em;
 
+
+
+}
+
+.Container{
+
+    text-align: center;
+    margin: 20px;
+    margin-top: 1cm;
+    color: black;
+    
+
+}
+
+.btn{
+    
+
+    margin: 20px;
+    margin-top: 1cm;
+    border: 1px solid #4a7ed0; /*anchura, estilo y color borde*/
+    padding: 10px; /*espacio alrededor texto*/
+    background-color: #4a7ed0; /*color botón*/
+    color: #000000; /*color texto*/
+    text-decoration:double; /*decoración texto*/
+    text-transform: uppercase; /*capitalización texto*/
+    font-family: 'Helvetica', sans-serif; /*tipografía texto*/
+    border-radius: 50px; /*bordes redondos*/
+    color:black;
 }
 

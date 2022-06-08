@@ -6,33 +6,33 @@
         <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
     </head>
 <body>
-  <div>
+  
     <div>
-    <h2>Buffet selected: </h2>
+    <h3>Buffet selected: </h3>
       <div class="Container">
         <h3 th:text="${buffet.name}"></h3>
-    	<div th:text="${buffet.description}"></div>
-    	<div>Dishes by the chef</div>
+    	<div  class="space"th:text="${buffet.description}"></div>
+    	<div  class="space">Dishes by the chef</div>
     	<div class="al"><a class="Container" th:href="@{'/chefad' + '/' + ${chef.id}}" th:text="${chef.lastName}">...</a></div>
 		<div><h4>Lista dei piatti:</h4></div>
-		<div class="al">
+		<div class="marco">
 		  <ul>
 		    <li th:each="dish : ${buffet.dishes}">
-			  <div class="al"><a class="Container"
-			  th:href="@{'/buffetad' + '/' + ${dish.id}}"
-			  th:text="${dish.name}">...</a></div>
-			  <div><a th:href="@{'/todeletedish' + '/' + ${dish.id}}" th:method="POST">Remove</a></div>
+			  <div class="al"><a class="Container" th:href="@{'/buffetad' + '/' + ${dish.id}}" th:text="${dish.name}">...</a></div>
+			  <div  class="space"><a class="generic" th:href="@{'/todeletedish' + '/' + ${dish.id}}" th:method="POST">Remove</a></div>
 			</li>
 		  </ul>
-		  <div>
-			<a th:href="@{'/adddishto' + '/' + ${buffet.id}}"><button type="submit"> Add new dish </button></a>
+		  
+		  
+		  <div  class="Container">
+			<a class="generic" th:href="@{'/adddishto' + '/' + ${buffet.id}}"> Add new dish </a>
    		  </div>
 	    </div>
 	  </div>
-   		<div>
-			<a th:href="@{/logout}"><button type="submit">logout</button></a>
+   		<div  class="Container">
+			<a class="generic" th:href="@{/logout}">Logout</a>
    		</div>
     </div>
-  </div>
+ 
 </body>
 </html>

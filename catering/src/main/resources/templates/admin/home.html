@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/home.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Home</title>
+</head>
 <body>
       <div>
-		<div>
-    	   <h4>Lista dei buffet:</h4>
+		
+    	   <h3>Lista dei buffet:</h3>
+		<div class="Container">
 		     <ul>
 			   <li th:each="buffet : ${buffets}">
-				  <div><a href="buffet.html" 
+			   <div class="spaces">
+				  <div class="space"><a href="buffet.html" 
 				   th:href="@{'/homead' + '/' + ${buffet.id}}" 
 				   th:text="${buffet.name}">...</a></div>
-				   <div><a th:href="@{'/todeletebuffet' + '/' + ${buffet.id}}" th:method="POST">Remove</a></div>
+				   
+				   <div class="space"><a th:href="@{'/todeletebuffet' + '/' + ${buffet.id}}" th:method="POST">Remove</a></div>
+				 </div>  
 			   </li>
 		    </ul>
-		    <div>
-			  <a th:href="@{/addbuffet}"><button type="submit"> Add new buffet </button></a>
-   		    </div>
+		</div>
+		    <div class="space">
+			  <a class="btn" th:href="@{/addbuffet}"> Add new buffet </a>
+   		    </div  >
 	    </div>
-   		<div>
-			<a th:href="@{/logout}"><button type="submit">logout</button></a>
+   		<div class="space">
+			<a class="btn" th:href="@{/logout}">Logout</a>
    		</div>
     </div>
 </body>
